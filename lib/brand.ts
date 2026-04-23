@@ -1,26 +1,19 @@
-/**
- * Branding central — un seul fichier pour re-skinner tout le site.
- * Compatible café, bubble tea, bakery, burger, snack premium.
- */
 export const brand = {
-  name: "Maison Noir",
-  shortName: "Noir",
-  tagline: "Le café, repensé.",
+  name: "WAYNE",
+  tagline: "Coffee, matcha, juices & all-day food.",
   description:
-    "Torréfaction artisanale, grains d'origine, rituels lents — pensés pour les matins qui comptent, à Bruxelles.",
-  city: "Bruxelles · Ixelles",
-  address: "Rue de Flandre 42",
-  hours: "Lun – Dim · 7h → 20h",
-  email: "hello@maisonnoir.be",
-  phone: "+32 2 503 42 42",
-  instagram: "@maisonnoir",
+    "WAYNE is a modern café experience built around specialty coffee, matcha, fresh juices, sweets and savoury food.",
   cta: {
     primary: "Commander",
     secondary: "Voir le menu",
-    order: "Commander · 3 min",
   },
   social: {
-    rating: "4.9",
+    rating: 4.9,
     reviews: "1 240",
+  },
+  contact: {
+    city: "Bruxelles",
+    area: "Ixelles",
+    paymentNote: "Carte uniquement",
   },
 };
