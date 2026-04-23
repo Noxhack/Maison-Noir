@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/Breno/.claude/skills/**)",
+      "Bash(git ls-remote *)",
+      "Read(//private/tmp/taste-skill/skills/**)",
+      "Read(//private/tmp/taste-skill/**)"
+    ]
+  }
+}
