@@ -6,53 +6,80 @@ import { ambience } from "@/lib/data";
 
 export default function Universe() {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y1 = useTransform(scrollYProgress, [0, 1], [70, -70]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [-40, 70]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [40, -40]);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [30, -30]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [-20, 30]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [20, -20]);
 
   return (
     <SectionWrapper
       id="univers"
       eyebrow="Notre univers"
       title="Un lieu. Un rituel. Une maison."
-      intro="Bois brut, lumière douce, grain fraîchement moulu. On a pensé cet endroit comme une parenthèse — la vôtre."
+      intro="Bois brut, lumière douce, café parfait."
     >
-      <div ref={ref} className="grid md:grid-cols-12 gap-5 md:gap-6">
+      <div ref={ref} className="flex flex-col gap-4 md:grid md:grid-cols-12 md:gap-6">
+
+        {/* IMAGE PRINCIPALE */}
         <motion.div
           style={{ y: y1 }}
-          className="md:col-span-7 aspect-[4/5] md:aspect-[5/6] rounded-[32px] overflow-hidden shadow-premium"
+          className="w-full h-[250px] md:h-auto md:col-span-7 rounded-2xl overflow-hidden shadow-premium"
         >
           <img
             src={ambience[0]}
             alt="Salle principale"
-            className="h-full w-full object-cover"
-            loading="lazy"
+            className="w-full h-full object-cover"
           />
         </motion.div>
 
-        <div className="md:col-span-5 flex flex-col gap-5 md:gap-6">
-          <motion.div style={{ y: y2 }} className="aspect-[4/3] rounded-[32px] overflow-hidden shadow-float">
-            <img src={ambience[1]} alt="Comptoir" className="h-full w-full object-cover" loading="lazy" />
+        {/* COLONNE DROITE */}
+        <div className="flex flex-col gap-4 md:col-span-5">
+
+          {/* IMAGE 2 */}
+          <motion.div
+            style={{ y: y2 }}
+            className="w-full h-[180px] md:h-auto rounded-2xl overflow-hidden shadow-float"
+          >
+            <img
+              src={ambience[1]}
+              alt="Comptoir"
+              className="w-full h-full object-cover"
+            />
           </motion.div>
 
-          <div className="rounded-[32px] bg-espresso text-cream p-7 md:p-9 relative overflow-hidden shadow-premium">
-            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-caramel/25 blur-3xl" />
-            <div className="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-latte/20 blur-3xl" />
-            <p className="relative text-[11px] uppercase tracking-[0.3em] text-cream/60">Depuis 2019</p>
-            <p className="relative mt-4 font-serif text-2xl md:text-[28px] leading-[1.15] text-balance">
-              Maison indépendante. Grains choisis main. Rituels non négociables.
+          {/* BLOC TEXTE */}
+          <div className="rounded-2xl bg-black text-white p-5 relative overflow-hidden">
+
+            <p className="text-xs uppercase text-white/60">Depuis 2019</p>
+
+            <p className="mt-2 text-lg md:text-xl font-serif">
+              Maison indépendante. Café de qualité.
             </p>
-            <div className="relative mt-8 grid grid-cols-3 gap-3 text-sm">
+
+            <div className="mt-4 grid grid-cols-3 gap-2 text-xs">
               <Stat value="12" label="Origines" />
               <Stat value="48h" label="Torréfaction" />
-              <Stat value="4.9★" label="1 240 avis" />
+              <Stat value="4.9★" label="Avis" />
             </div>
           </div>
 
-          <motion.div style={{ y: y3 }} className="aspect-square rounded-[32px] overflow-hidden shadow-float">
-            <img src={ambience[2]} alt="Latte art" className="h-full w-full object-cover" loading="lazy" />
+          {/* IMAGE 3 */}
+          <motion.div
+            style={{ y: y3 }}
+            className="w-full h-[200px] md:h-auto rounded-2xl overflow-hidden shadow-float"
+          >
+            <img
+              src={ambience[2]}
+              alt="Latte"
+              className="w-full h-full object-cover"
+            />
           </motion.div>
+
         </div>
       </div>
     </SectionWrapper>
@@ -61,9 +88,9 @@ export default function Universe() {
 
 function Stat({ value, label }: { value: string; label: string }) {
   return (
-    <div className="border-t border-cream/20 pt-3">
-      <p className="font-serif text-2xl tabular-nums">{value}</p>
-      <p className="text-[10px] uppercase tracking-[0.22em] text-cream/60 mt-0.5">{label}</p>
+    <div>
+      <p className="text-sm font-semibold">{value}</p>
+      <p className="text-[10px] text-white/60">{label}</p>
     </div>
   );
 }
