@@ -1,41 +1,44 @@
 "use client";
-import { motion, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
-import { brand } from "@/lib/brand";
+import { motion } from "framer-motion";
 import clsx from "clsx";
+import Logo from "./Logo";
 
-export default function Navbar() {
-  const { scrollY } = useScroll();
+export default function Navbar({ tableNumber }: { tableNumber?: string }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    return scrollY.on("change", (v) => setScrolled(v > 30));
-  }, [scrollY]);
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <motion.header
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className={clsx(
-        "fixed top-0 inset-x-0 z-50 px-4 py-3 flex justify-between items-center",
-        scrolled ? "bg-white/80 backdrop-blur border-b" : "bg-transparent"
+        "sticky top-0 z-40 safe-top transition-colors duration-300",
+        scrolled ? "bg-cream/85 backdrop-blur-xl border-b border-espresso/5" : "bg-transparent"
       )}
     >
-      {/* LOGO */}
-      <a href="#top" className="flex items-center gap-2">
-        <div className="h-7 w-7 rounded-full bg-black text-white flex items-center justify-center text-xs">
-          N
+      <div className="flex items-center justify-between px-5 h-14">
+        <div className="flex items-center gap-2.5">
+          <div className="h-8 w-8 rounded-full bg-wayne flex items-center justify-center">
+            <span className="text-[10px] font-bold text-white tracking-widest">W</span>
+          </div>
+          <Logo className="text-[13px]" tracking="0.28em" />
         </div>
-        <span className="font-semibold text-sm">
-          {brand.name}
-        </span>
-      </a>
 
-      {/* BOUTON MOBILE */}
-      <a
-        href="#experience"
-        className="bg-black text-white px-4 py-2 rounded-full text-sm active:scale-95"
-      >
-        Commander
-      </a>
+        {tableNumber && (
+          <div className="flex items-center gap-1.5 px-3 h-8 rounded-full bg-espresso/5 border border-espresso/5">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            <span className="text-[11px] font-medium tracking-wide uppercase">Table {tableNumber}</span>
+          </div>
+        )}
+      </div>
     </motion.header>
   );
 }

@@ -5,30 +5,26 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cream: "#F6F0E7",
-        sand: "#EADFCB",
-        mocha: "#3B2A1E",
-        espresso: "#1E130B",
-        caramel: "#C89B6A",
-        latte: "#D9BFA2",
-        ink: "#0F0A06",
+        cream: "#F7F2EA",
+        sand: "#ECE1CE",
+        stone: "#E4D7C0",
+        mocha: "#6B4A2B",
+        espresso: "#2A1C10",
+        ink: "#120A05",
+        accent: "#C88A4A",
+        wayne: "#A88A6A",
+        waynedeep: "#8E7356",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         serif: ["var(--font-serif)", "Georgia", "serif"],
       },
-      letterSpacing: {
-        tightest: "-0.04em",
+      boxShadow: {
+        soft: "0 1px 2px rgba(42,28,16,0.04), 0 8px 24px -8px rgba(42,28,16,0.10)",
+        lift: "0 10px 30px -10px rgba(42,28,16,0.22)",
       },
-      animation: {
-        "spin-slow": "spin 18s linear infinite",
-        float: "float 6s ease-in-out infinite",
-      },
-      keyframes: {
-        float: {
-          "0%,100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-14px)" },
-        },
+      borderRadius: {
+        xl2: "1.25rem",
       },
     },
   },
